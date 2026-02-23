@@ -209,6 +209,57 @@
             margin: 0;
         }
 
+        .survey-cta {
+            background: linear-gradient(135deg, #6B9B9E 0%, #8BB5B8 100%);
+            color: white;
+            padding: 48px 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 48px 0;
+            box-shadow: 0 8px 24px rgba(107, 155, 158, 0.2);
+        }
+
+        .survey-cta h3 {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .survey-cta p {
+            font-size: 1.125rem;
+            margin-bottom: 28px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .survey-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .survey-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            background: #f8f8f8;
+        }
+
+        .survey-note {
+            font-size: 0.9375rem;
+            margin-top: 20px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
         .chart-section {
             margin: 60px 0;
         }
@@ -433,6 +484,16 @@
             .toc-section {
                 padding: 24px;
             }
+            .survey-cta {
+                padding: 32px 24px;
+            }
+            .survey-cta h3 {
+                font-size: 1.5rem;
+            }
+            .survey-button {
+                display: block;
+                padding: 14px 32px;
+            }
         }
     </style>
 </head>
@@ -490,6 +551,16 @@
             <div class="intro-box">
                 <h3>🚧 W trakcie realizacji</h3>
                 <p>Aktualnie przygotowujemy badanie, które pomoże zidentyfikować, które cechy ADHD są najbardziej problematyczne dla społeczności. Wyniki będą wkrótce dostępne na tej stronie.</p>
+            </div>
+
+            <!-- Survey CTA -->
+            <div class="survey-cta">
+                <h3>📋 Pomóż nam lepiej zrozumieć ADHD</h3>
+                <p>Wypełnij krótką ankietę i pomóż społeczności zidentyfikować największe wyzwania. Twoje odpowiedzi są anonimowe i pomogą nam tworzyć lepsze rozwiązania.</p>
+                <a href="https://forms.gle/uS72pnSxkYTdPTTd7" target="_blank" rel="noopener noreferrer" class="survey-button">
+                    Wypełnij ankietę (2-3 minuty)
+                </a>
+                <p class="survey-note">✨ Wyniki będą wkrótce dostępne na tej stronie</p>
             </div>
 
             <!-- Table of Contents -->
