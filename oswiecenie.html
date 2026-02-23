@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oświecenie - Co się zmieniło po diagnozie - ADHD w Praktyce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B9B9E;
+            --primary-light: #8BB5B8;
+            --primary-dark: #5A8285;
+            --accent-red: #B44F4A;
+            --accent-orange: #E5A353;
+            --accent-green: #6FA770;
+            --accent-blue: #7BA6C4;
+            --text-primary: #2d3e3f;
+            --text-secondary: #5a6f71;
+            --text-tertiary: #7d9194;
+            --bg-primary: #fdfcf9;
+            --bg-secondary: #f5f3ed;
+            --bg-tertiary: #ebe8df;
+            --border: #ddd9cd;
+            --border-light: #ebe8df;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(253, 252, 249, 0.95);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-tertiary);
+            color: var(--primary);
+        }
+
+        .article-header {
+            padding: 60px 0 40px;
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            border-bottom: 3px solid var(--accent-orange);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .article-category {
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            background: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .article-date {
+            color: var(--text-tertiary);
+            font-size: 0.9375rem;
+        }
+
+        .article-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+        }
+
+        .article-intro {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 720px;
+        }
+
+        .article-content {
+            padding: 60px 0;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 48px 0 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 36px 0 16px;
+        }
+
+        .article-content p {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 24px 0;
+            padding-left: 28px;
+        }
+
+        .article-content li {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .article-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef8f3 0%, #fdf3eb 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .highlight-box p {
+            margin-bottom: 16px;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            margin-bottom: 40px;
+            transition: gap 0.2s;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        footer {
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-tertiary);
+            font-size: 0.9375rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-intro {
+                font-size: 1.125rem;
+            }
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+            nav ul {
+                gap: 20px;
+            }
+            nav a {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="o-mnie.html" class="logo">
+                    <img src="logo.png" alt="ADHD w Praktyce">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="o-mnie.html">Start</a></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Droga ADHD-owca
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="podejrzenia.html">Podejrzenia</a>
+                                <a href="diagnoza.html">Diagnoza</a>
+                                <a href="oswiecenie.html">Oświecenie</a>
+                                <a href="o-mnie.html#blog">Życie oświecone</a>
+                            </div>
+                        </li>
+                        <li><a href="o-mnie.html#about">O mnie</a></li>
+                        <li><a href="o-mnie.html#blog">Życie oświecone</a></li>
+                        <li><a href="o-mnie.html#contact">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="article-header">
+        <div class="container">
+            <div class="article-meta">
+                <span class="article-category">Droga ADHD-owca</span>
+                <span class="article-date">8 lutego 2025</span>
+            </div>
+            <h1 class="article-title">Oświecenie - Co się zmieniło?</h1>
+            <p class="article-intro">
+                Mam diagnozę. I co teraz? Generalnie nic się nie zmieniło - już przed diagnozą wiedziałem, że mam ADHD. Ale diagnoza otworzyła nowe możliwości. Oto moja droga.
+            </p>
+        </div>
+    </section>
+
+    <article class="article-content">
+        <div class="container">
+            <a href="o-mnie.html#blog" class="back-link">← Powrót do Życia oświeconego</a>
+
+            <p>
+                Diagnoza w ręku. ADHD z deficytem uwagi w typie mieszanym. Oficjalnie potwierdzone.
+            </p>
+
+            <p>
+                Czy coś się zmieniło? Szczerze? Generalnie nic. Bo już przed diagnozą wiedziałem, że mam ADHD. Podejrzenia były mocne, objawy oczywiste.
+            </p>
+
+            <p>
+                Ale diagnoza dała mi coś ważnego - <strong>dodatkowe opcje do przetestowania</strong>. I od tego momentu zaczęła się prawdziwa podróż.
+            </p>
+
+            <h2>Krok 1: Farmakologia</h2>
+
+            <p>
+                Zacząłem od leków. Właśnie kończę pierwszy miesiąc brania <strong>Atenza</strong> (metylfenidat).
+            </p>
+
+            <h3>Co się zmieniło?</h3>
+
+            <p>
+                Wydawać by się mogło, że lek spełnił swoją rolę:
+            </p>
+
+            <ul>
+                <li><strong>Uspokoił trochę natłok myśli</strong> - nie do końca, ale zauważalnie</li>
+                <li><strong>Nieznacznie poprawił dysfunkcje związane z roztargnieniem</strong> - gubię rzeczy rzadziej (choć wciąż gubię)</li>
+                <li><strong>Ale nie wyeliminował zupełnie tych negatywnych cech</strong> - wciąż jestem sobą, tylko w nieco spokojniejszej wersji</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p>
+                    <strong>Ważna nauka:</strong> Leki to nie magiczna pigułka. To narzędzie, które pomaga - ale nie rozwiązuje wszystkiego. Wciąż trzeba pracować nad sobą, rozumieć swoje dysfunkcje, budować strategie.
+                </p>
+            </div>
+
+            <p>
+                Pierwszy miesiąc to też czas obserwacji i ewentualnego dostosowywania dawki. U każdego działa inaczej. U mnie - pomaga, ale to tylko jeden z elementów układanki.
+            </p>
+
+            <h2>Krok 2: Psychoedukacja</h2>
+
+            <p>
+                Drugim krokiem było poszerzenie wiedzy. Psychoedukacja - zrozumienie czym naprawdę jest ADHD, jak działa mój mózg, jakie są mechanizmy moich dysfunkcji.
+            </p>
+
+            <h3>Dlaczego to było tak ważne?</h3>
+
+            <p>
+                Głównie z uwagi na problemy swoje i syna. To daje większą motywację. Nie uczę się tylko dla siebie - uczę się, żeby pomóc jemu. Żeby nie popełniał moich błędów. Żeby miał łatwiej.
+            </p>
+
+            <h3>Co zrobiłem?</h3>
+
+            <p>
+                <strong>Zakończyłem już 5 książkę w formie audiobooków</strong> o ADHD. Audiobooki to idealna forma dla mnie - mogę słuchać podczas spacerów, jazdy, robienia czegoś rękami.
+            </p>
+
+            <p>
+                I wiesz co? Już trochę lepiej rozumiem swoje dysfunkcje. Co ważniejsze - <strong>zebrałem kilkanaście sposobów na poprawę funkcjonowania z nimi</strong>.
+            </p>
+
+            <p>
+                To nie są teoretyczne porady. To konkretne strategie, które testuję na sobie i synu. Niektóre działają, niektóre nie. Ale nawet te, które nie działają - uczą czegoś o nas.
+            </p>
+
+            <h2>Nowy cel: Budowanie stron WWW</h2>
+
+            <p>
+                Obrałem sobie nowy cel - nauczyć się budować strony internetowe. Stąd jest ten blog.
+            </p>
+
+            <p>
+                Dlaczego akurat to? Bo:
+            </p>
+
+            <ul>
+                <li>To kreatywne i analityczne jednocześnie - idealne dla mojego mózgu</li>
+                <li>Widzę efekty swojej pracy - to pomaga w motywacji</li>
+                <li>Mogę to wykorzystać do pomocy innym - jak ten blog</li>
+                <li>To nowy projekt, który (miejmy nadzieję) doprowadzę do końca</li>
+            </ul>
+
+            <h2>Plany na przyszłość</h2>
+
+            <p>
+                Aktualnie planuję <strong>stworzenie katalogu dysfunkcji wraz z rozwiązaniami</strong> w standardzie Wikipedii:
+            </p>
+
+            <ul>
+                <li>Problem → link do opisu</li>
+                <li>Opis → link do listy rozwiązań</li>
+                <li>Rozwiązania → sprawdzone, przetestowane, z opisem co działa, a co nie</li>
+            </ul>
+
+            <p>
+                To będzie praktyczny przewodnik. Nie teoria, tylko rzeczy, które naprawdę działają w codziennym życiu.
+            </p>
+
+            <h2>Misja tego bloga</h2>
+
+            <p>
+                Za pomocą tego bloga chcę pokazać, że <strong>jako ADHD-owcy możemy dużo dać światu</strong>.
+            </p>
+
+            <p>
+                Że ADHD to nie tylko dysfunkcje. To też zbiór cech pozytywnych:
+            </p>
+
+            <ul>
+                <li>Kreatywność</li>
+                <li>Myślenie nieszablonowe</li>
+                <li>Pasja i energia (kiedy nas coś naprawdę interesuje)</li>
+                <li>Umiejętność widzenia rzeczy, których inni nie dostrzegają</li>
+                <li>Empatia i wrażliwość</li>
+            </ul>
+
+            <p>
+                Ale - i to ważne - <strong>pod warunkiem, że rozumie się problem i wie, jak się z nim obchodzić</strong>.
+            </p>
+
+            <div class="highlight-box">
+                <p>
+                    <strong>Kluczowe zrozumienie:</strong>
+                </p>
+                <p>
+                    ADHD rozumiem jak komputer z innym systemem operacyjnym. Jak Linux w świecie Windowsów:
+                </p>
+                <ul style="margin-top: 16px; margin-bottom: 0;">
+                    <li><strong>Niewspierany</strong> - świat jest zbudowany pod inne systemy</li>
+                    <li><strong>Niezrozumiany przez większość</strong> - "po co ci to, jak można normalnie?"</li>
+                    <li><strong>Trudny w obsłudze bez właściwej wiedzy</strong> - ale kiedy się nauczysz...</li>
+                    <li><strong>Darmowy i w pełni funkcjonalny</strong> - nie musisz się dostosowywać do "licencji"</li>
+                    <li><strong>Niezależny</strong> - myślisz i działasz inaczej</li>
+                    <li><strong>Bardziej do pracy niż do zabawy</strong> - kiedy znajdziesz swoją pasję, jesteś nie do zatrzymania</li>
+                    <li><strong>Dla pasjonatów, nie dla amatorów</strong> - wymaga zaangażowania w zrozumienie siebie</li>
+                    <li><strong>Tak potrzebny w dzisiejszym burzliwym świecie</strong> - kreatywność, nieszablonowe myślenie, umiejętność dostrzegania tego, czego inni nie widzą</li>
+                </ul>
+                <p style="margin-top: 16px;">
+                    ADHD nie jest wyrokiem. To nie oznacza, że jesteś gorszy. To oznacza, że twój mózg działa na innym systemie operacyjnym.
+                </p>
+                <p>
+                    I kiedy zrozumiesz jak - możesz wykorzystać to na swoją korzyść. Zamiast walczyć ze sobą, możesz pracować ze sobą.
+                </p>
+            </div>
+
+            <h2>Co dalej?</h2>
+
+            <p>
+                To dopiero początek. Farmakologia, psychoedukacja, nowe cele - to wszystko elementy układanki.
+            </p>
+
+            <p>
+                W sekcji "Życie oświecone" będę dzielił się tym, czego się uczę. Konkretnymi rozwiązaniami. Sprawdzonymi technikami. Porażkami i sukcesami.
+            </p>
+
+            <p>
+                Bo życie z ADHD to ciągłe eksperymentowanie. Testowanie. Dostosowywanie. I czasem - triumfowanie.
+            </p>
+
+            <p>
+                Jeśli masz ADHD lub podejrzewasz, że masz - pamiętaj:
+            </p>
+
+            <ul>
+                <li>Nie jesteś sam</li>
+                <li>To nie jest twoja wina</li>
+                <li>Możesz z tym żyć - i żyć dobrze</li>
+                <li>Ale musisz zrozumieć siebie i nauczyć się pracować ze sobą, nie przeciwko sobie</li>
+            </ul>
+
+            <a href="o-mnie.html#blog" class="back-link">← Powrót do Życia oświeconego</a>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2025 ADHD w Praktyce</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnoza ADHD - Droga przez proces - ADHD w Praktyce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B9B9E;
+            --primary-light: #8BB5B8;
+            --primary-dark: #5A8285;
+            --accent-red: #B44F4A;
+            --accent-orange: #E5A353;
+            --accent-green: #6FA770;
+            --accent-blue: #7BA6C4;
+            --text-primary: #2d3e3f;
+            --text-secondary: #5a6f71;
+            --text-tertiary: #7d9194;
+            --bg-primary: #fdfcf9;
+            --bg-secondary: #f5f3ed;
+            --bg-tertiary: #ebe8df;
+            --border: #ddd9cd;
+            --border-light: #ebe8df;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(253, 252, 249, 0.95);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-tertiary);
+            color: var(--primary);
+        }
+
+        .article-header {
+            padding: 60px 0 40px;
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            border-bottom: 3px solid var(--accent-blue);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .article-category {
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            background: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .article-date {
+            color: var(--text-tertiary);
+            font-size: 0.9375rem;
+        }
+
+        .article-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+        }
+
+        .article-intro {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 720px;
+        }
+
+        .article-content {
+            padding: 60px 0;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 48px 0 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 36px 0 16px;
+        }
+
+        .article-content h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 28px 0 12px;
+        }
+
+        .article-content p {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 24px 0;
+            padding-left: 28px;
+        }
+
+        .article-content li {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .article-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef8f3 0%, #fdf3eb 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .warning-box p {
+            margin-bottom: 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            margin-bottom: 40px;
+            transition: gap 0.2s;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        footer {
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-tertiary);
+            font-size: 0.9375rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-intro {
+                font-size: 1.125rem;
+            }
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+            nav ul {
+                gap: 20px;
+            }
+            nav a {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="o-mnie.html" class="logo">
+                    <img src="logo.png" alt="ADHD w Praktyce">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="o-mnie.html">Start</a></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Droga ADHD-owca
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="podejrzenia.html">Podejrzenia</a>
+                                <a href="diagnoza.html">Diagnoza</a>
+                                <a href="oswiecenie.html">Oświecenie</a>
+                                <a href="o-mnie.html#blog">Blog</a>
+                            </div>
+                        </li>
+                        <li><a href="o-mnie.html#about">O mnie</a></li>
+                        <li><a href="o-mnie.html#blog">Blog</a></li>
+                        <li><a href="o-mnie.html#contact">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="article-header">
+        <div class="container">
+            <div class="article-meta">
+                <span class="article-category">Droga ADHD-owca</span>
+                <span class="article-date">12 lutego 2025</span>
+            </div>
+            <h1 class="article-title">Diagnoza - Droga przez proces</h1>
+            <p class="article-intro">
+                Masz podejrzenia. Rozpoznajesz objawy. Co teraz? Moja droga do diagnozy miała swoje wzloty, upadki i jedną porażkę. Opowiem szczerze, jak to wygląda - bez upiększania.
+            </p>
+        </div>
+    </section>
+
+    <article class="article-content">
+        <div class="container">
+            <a href="o-mnie.html#blog" class="back-link">← Powrót do bloga</a>
+
+            <p>
+                Jestem pragmatykiem i przyznam się bez bicia - jestem skąpy. Myśl o zapłaceniu <strong>minimum 900 zł</strong> za "pogawędkę i wypełnienie testów" długo mnie blokowała. Odkładałem decyzję miesiącami.
+            </p>
+
+            <p>
+                Ale po półrocznych nagabywaniach żony postanowiłem pójść do przodu. Jeśli ty też się zastanawiasz - ta historia jest dla ciebie.
+            </p>
+
+            <h2>Kto może cię zdiagnozować?</h2>
+
+            <p>
+                Na rynku jest mnóstwo różnych fachowców: psychologów, psychiatrów, mentorów, coachów, psychoanalityków. Każdy chce zarobić. Nie każdy jest kompetentny. Trzeba wiedzieć, do kogo iść.
+            </p>
+
+            <h3>Kto może oficjalnie diagnozować:</h3>
+
+            <ul>
+                <li><strong>Psychiatra</strong> - lekarz, może wypisać receptę na leki. Jeśli planujesz farmakoterapię (jak ja), to twój wybór.</li>
+                <li><strong>Psycholog kliniczny</strong> - może wykonać pełną diagnostykę i testy, ale nie wypisze recepty.</li>
+                <li><strong>Neurolog</strong> - w teorii tak, w praktyce rzadko się tym zajmuje.</li>
+            </ul>
+
+            <h3>Kto NIE diagnozuje (choć czasem próbuje):</h3>
+
+            <ul>
+                <li>Coach ADHD - może pomóc PO diagnozie</li>
+                <li>Mentor - podobnie</li>
+                <li>Psychoanalityk - inna spec jalizacja</li>
+                <li>"Specjaliści ADHD" bez kwalifikacji - uważaj na szarlatanów</li>
+            </ul>
+
+            <div class="warning-box">
+                <p>
+                    <strong>KLUCZOWE:</strong> Jeśli chcesz leków (a dla mnie to była główna motywacja - farmakologia), potrzebujesz diagnozy od <strong>psychiatry</strong>. Bez tego nie dostaniesz ich legalnie.
+                </p>
+            </div>
+
+            <h2>Moja droga - dwie próby</h2>
+
+            <h3>Próba 1: Online (300 zł w błoto)</h3>
+
+            <p>
+                Umówiłem się na konsultację online. Wpłaciłem 300 zł. Pani doktor wysłuchała mnie i dała test <strong>DIVA 5</strong> - dla mnie i osoby bliskiej.
+            </p>
+
+            <p>
+                Wykonałem. Zeskanowałem. Wysłałem. Tydzień później - cisza. Próby kontaktu (telefon, WhatsApp, mail) - zero reakcji. Reklamacja? "Reklamacji nie uwzględniamy".
+            </p>
+
+            <div class="highlight-box">
+                <p>
+                    <strong>Lekcja:</strong> Może ja akurat tak trafiłem. Nie przekreślam wszystkich diagnoz online - na pewno będą tańsze. Ale pytanie: czy na pewno? Czy niższa cena nie idzie w parze z niższą odpowiedzialnością?
+                </p>
+            </div>
+
+            <h3>Próba 2: Stacjonarnie (5 tygodni, sukces)</h3>
+
+            <p>
+                Po kolejnych kilku miesiącach zwlekania postanowiłem zdiagnozować się stacjonarnie w klinice w Kielcach. Zajęło mi to <strong>5 tygodni</strong>.
+            </p>
+
+            <p>
+                Wiem, niektórzy robią to w tydzień. Dla mnie to był wyczyn, że w ogóle doszedłem do końca.
+            </p>
+
+            <h2>Jak wygląda proces? (Krok po kroku)</h2>
+
+            <h3>Krok 1: Wstępna konsultacja psychiatryczna</h3>
+
+            <p>
+                Pierwsza wizyta to szczegółowa rozmowa (1-2 godziny). Psychiatra:
+            </p>
+
+            <ul>
+                <li>Wysłuchuje objawów i trudności</li>
+                <li>Pyta o dzieciństwo - ADHD musi występować od dziecka</li>
+                <li>Sprawdza wpływ na różne obszary życia</li>
+                <li>Wyklucza inne przyczyny (depresja, lęk, tarczyca)</li>
+            </ul>
+
+            <p>
+                To nie jest "pogawędka". To szczegółowy wywiad medyczny. Przygotuj się na trudne pytania o swoje niepowodzenia.
+            </p>
+
+            <h3>Krok 2: Testy diagnostyczne</h3>
+
+            <p>
+                Potem dostajesz testy. U mnie były dwa główne:
+            </p>
+
+            <h4>DIVA 5 (Diagnostic Interview for ADHD in adults)</h4>
+
+            <ul>
+                <li>Pytania o objawy w dzieciństwie</li>
+                <li>Pytania o objawy obecnie</li>
+                <li>Wypełniasz ty + osoba bliska</li>
+                <li>Ocenia: nieuwagę, nadpobudliwość, impulsywność</li>
+            </ul>
+
+            <h4>CAARS (Conners' Adult ADHD Rating Scales)</h4>
+
+            <ul>
+                <li>Pełna wersja: ponad 180 pytań (tak, ponad 180!)</li>
+                <li>U mnie: psycholog czytał pytania, ja odpowiadałem</li>
+                <li>O wiele szybciej niż samodzielne wypełnianie</li>
+                <li>Pytania o uwagę, pamięć, organizację, impulsywność, emocje, relacje</li>
+            </ul>
+
+            <p>
+                180 pytań brzmi przerażająco. Ale kiedy ktoś czyta, a ty tylko odpowiadasz - idzie sprawniej niż myślisz.
+            </p>
+
+            <p>
+                <strong>Inne możliwe testy:</strong> ASRS (krótszy screening), testy funkcji wykonawczych, testy na współwystępujące zaburzenia. Ja dodatkowo miałem testy na Aspergera - bo był zdiagnozowany u syna.
+            </p>
+
+            <h3>Krok 3: Perspektywa osoby bliskiej</h3>
+
+            <p>
+                Ważny element - ale niekoniecznie musi być osobista wizyta.
+            </p>
+
+            <p>
+                U mnie: psycholog poprosił o podanie maila żony. Ona dostała kwestionariusz mailem i mogła sobie "poużywać i ponarzekać na mnie" - wypisać szereg dysfunkcji, które widzi z boku.
+            </p>
+
+            <p>
+                I wystarczyło. Niektóre jej odpowiedzi były... enlightening. "Tak, zawsze zapomina gdzie położył rzeczy". "Tak, przerywa mi w połowie zdania". Aua.
+            </p>
+
+            <p>
+                Ale to działa. Osoba bliska widzi rzeczy, których ty nie dostrzegasz. Albo nie chcesz przyznać.
+            </p>
+
+            <h3>Krok 4: Analiza wyników</h3>
+
+            <p>
+                Specjalista opracowuje szczegółową diagnozę. U mnie zajęło to tydzień.
+            </p>
+
+            <p>
+                To czas na:
+            </p>
+
+            <ul>
+                <li>Analizę wszystkich testów</li>
+                <li>Porównanie wywiadów (twojego i osoby bliskiej)</li>
+                <li>Weryfikację kryteriów diagnostycznych</li>
+                <li>Przygotowanie dokumentacji</li>
+            </ul>
+
+            <p>
+                Spokojnie, chłodno, profesjonalnie. Specjalista analizuje dane i formułuje wnioski.
+            </p>
+
+            <h3>Krok 5: Omówienie diagnozy i dokumentacja</h3>
+
+            <p>
+                Ostatnia wizyta. Omówienie wyników i przekazanie dokumentacji.
+            </p>
+
+            <p>
+                U mnie diagnozę robiła psycholog. Rozpoznanie: <strong>ADHD z deficytem uwagi w typie mieszanym</strong>.
+            </p>
+
+            <h4>Co zawiera dokumentacja diagnostyczna?</h4>
+
+            <p>
+                Dostałem szczegółowy dokument, który zawierał:
+            </p>
+
+            <ul>
+                <li><strong>Wstęp</strong> - informacje o rozpoznanych objawach po pierwszej wizycie</li>
+                <li><strong>Wyniki z badań</strong> - szczegółowe wyniki testów (DIVA 5, CAARS, etc.)</li>
+                <li><strong>Profil kliniczny</strong> - dużo informacji o nie do końca jasnym przekazie, przynajmniej dla mnie. Myślę że może być przydatne przy kontynuacji leczenia</li>
+                <li><strong>Wnioski wynikające z badań</strong> - co pokazują konkretne testy</li>
+                <li><strong>Wnioski wynikające z całości diagnozy</strong> - synteza wszystkich danych</li>
+                <li><strong>Zalecenia</strong> - co dalej: terapia, farmakologia, zmiany stylu życia</li>
+            </ul>
+
+            <p>
+                To szczegółowy, profesjonalny dokument. Niektóre fragmenty są bardzo techniczne - ale to właśnie ta dokumentacja jest kluczowa, jeśli będziesz kontynuował leczenie u innych specjalistów.
+            </p>
+
+            <div class="highlight-box">
+                <p>
+                    <strong>Ważne:</strong> Jeśli diagnozę robiłeś u psychologa (jak ja) i chcesz leków - musisz pójść z tą dokumentacją do psychiatry. Psycholog potwierdza ADHD, ale tylko psychiatra może przepisać leki.
+                </p>
+            </div>
+
+            <h2>Ile to trwa i kosztuje?</h2>
+
+            <h3>Czas:</h3>
+
+            <ul>
+                <li>Szybko: 1-2 tygodnie</li>
+                <li>Normalnie: 4-6 tygodni</li>
+                <li>Z ADHD: może dłużej (u mnie 5 tygodni)</li>
+                <li>NFZ: nawet rok (kolejki)</li>
+            </ul>
+
+            <h3>Koszty (prywatnie):</h3>
+
+            <ul>
+                <li>Konsultacja: 200-400 zł/wizyta</li>
+                <li>Testy: 300-600 zł</li>
+                <li><strong>Razem: 900-2000 zł</strong></li>
+                <li>Online: 500-1000 zł (ale patrz moja historia)</li>
+            </ul>
+
+            <p>
+                Tak, to dużo. Ale jeśli zmieni twoje życie - najlepsza inwestycja.
+            </p>
+
+            <h2>Po co ci diagnoza?</h2>
+
+            <p>
+                Dla mnie istotna była <strong>farmakologia</strong>. Bez diagnozy psychiatry - nie ma legalnie leków.
+            </p>
+
+            <p>
+                Ale diagnoza to też:
+            </p>
+
+            <ul>
+                <li>Zrozumienie siebie</li>
+                <li>Dokumentacja (praca, szkoła)</li>
+                <li>Dostęp do terapii</li>
+                <li>Ulga - wiesz, co z tobą "nie tak"</li>
+            </ul>
+
+            <h2>Moje rady</h2>
+
+            <div class="highlight-box">
+                <p><strong>1. Wybierz specjalistę z doświadczeniem w ADHD u dorosłych</strong><br>
+                Sprawdź opinie, zapytaj wprost.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>2. Online czy stacjonarnie?</strong><br>
+                Online może być taniej. Ale ryzyko większe. Jeśli online - sprawdź dokładnie opinię.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>3. Przygotuj się finansowo</strong><br>
+                900-2000 zł to realna kwota. Warto.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>4. Weź osobę bliską</strong><br>
+                Żona, rodzic, partner. Ich perspektywa nieoceniona.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>5. To proces, nie jedna wizyta</strong><br>
+                Z ADHD może zająć dłużej. To OK. Ważne dojść do końca.</p>
+            </div>
+
+            <h2>Co dalej?</h2>
+
+            <p>
+                Dla mnie diagnoza była przełomem. Po 40 latach miałem odpowiedzi.
+            </p>
+
+            <p>
+                Nie byłem "leniwy". Nie byłem "niedojrzały". Po prostu mój mózg działał inaczej.
+            </p>
+
+            <p>
+                A co z tym zrobiłem? O tym w następnym artykule - "Oświecenie".
+            </p>
+
+            <a href="o-mnie.html#blog" class="back-link">← Powrót do bloga</a>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2025 ADHD w Praktyce</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

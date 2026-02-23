@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHD w Praktyce - Perspektywa pacjenta i ojca</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B9B9E;
+            --primary-light: #8BB5B8;
+            --primary-dark: #5A8285;
+            --accent-red: #B44F4A;
+            --accent-orange: #E5A353;
+            --accent-green: #6FA770;
+            --accent-blue: #7BA6C4;
+            --text-primary: #2d3e3f;
+            --text-secondary: #5a6f71;
+            --text-tertiary: #7d9194;
+            --bg-primary: #fdfcf9;
+            --bg-secondary: #f5f3ed;
+            --bg-tertiary: #ebe8df;
+            --border: #ddd9cd;
+            --border-light: #ebe8df;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(253, 252, 249, 0.95);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        /* Dropdown Menu */
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-tertiary);
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        .main-content {
+            max-width: 720px;
+        }
+
+        .intro-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .content-text {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        .content-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .callout {
+            background: linear-gradient(135deg, #fef8f3 0%, #fdf3eb 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .callout-title {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--accent-red);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .callout p {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .quote-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .quote-text {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Purpose Section */
+        .purpose-section {
+            background: var(--bg-secondary);
+            padding: 32px;
+            border-radius: 12px;
+            margin-top: 56px;
+        }
+
+        .purpose-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 28px;
+            letter-spacing: -0.02em;
+        }
+
+        .purpose-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .purpose-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .purpose-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .purpose-item:nth-child(1) .purpose-icon {
+            background: linear-gradient(135deg, #B44F4A 0%, #c96460 100%);
+        }
+
+        .purpose-item:nth-child(2) .purpose-icon {
+            background: linear-gradient(135deg, #E5A353 0%, #ebb770 100%);
+        }
+
+        .purpose-item:nth-child(3) .purpose-icon {
+            background: linear-gradient(135deg, #6FA770 0%, #85b888 100%);
+        }
+
+        .purpose-item:nth-child(4) .purpose-icon {
+            background: linear-gradient(135deg, #6B9B9E 0%, #82afb2 100%);
+        }
+
+        .purpose-item:nth-child(5) .purpose-icon {
+            background: linear-gradient(135deg, #7BA6C4 0%, #92b7d1 100%);
+        }
+
+        .purpose-text {
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* Bottom Statement */
+        .bottom-statement {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            padding: 48px;
+            border-radius: 12px;
+            margin-top: 56px;
+            color: white;
+            box-shadow: 0 4px 20px rgba(107, 155, 158, 0.2);
+        }
+
+        .bottom-statement p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .categories-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--border);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border-radius: 24px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .category-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .blog-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .blog-card-icon {
+            font-size: 4rem;
+        }
+
+        .blog-card-content {
+            padding: 28px;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .blog-category {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .blog-date {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .blog-card-title {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .blog-card-excerpt {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .blog-card-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: gap 0.2s;
+            gap: 4px;
+        }
+
+        .blog-card-link:hover {
+            gap: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-tertiary);
+            font-size: 0.9375rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.125rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 0.875rem;
+            }
+
+            .content-text,
+            .intro-text {
+                font-size: 1rem;
+            }
+
+            .callout,
+            .quote-block {
+                padding: 24px;
+            }
+
+            .purpose-section {
+                padding: 24px;
+            }
+
+            .bottom-statement {
+                padding: 32px 24px;
+            }
+
+            .bottom-statement p {
+                font-size: 1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-filter {
+                gap: 8px;
+            }
+
+            .category-btn {
+                font-size: 0.875rem;
+                padding: 8px 16px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a.active::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <img src="logo.png" alt="ADHD w Praktyce">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="o-mnie.html">Start</a></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Droga ADHD-owca
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="podejrzenia.html">Podejrzenia</a>
+                                <a href="diagnoza.html">Diagnoza</a>
+                                <a href="oswiecenie.html">Oświecenie</a>
+                                <a href="o-mnie.html#blog">Życie oświecone</a>
+                            </div>
+                        </li>
+                        <li><a href="#about" class="active">O mnie</a></li>
+                        <li><a href="#blog">Życie oświecone</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Perspektywa pacjenta i ojca</h1>
+                <p class="subtitle">
+                    Nie jestem ekspertem medycznym. Jestem osobą z ADHD, która testuje rozwiązania na sobie i dzieli się tym, co naprawdę działa.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">O autorze</div>
+                <h2 class="section-title">Mam 40 lat i w tym roku dostałem diagnozę ADHD</h2>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="main-content">
+                    <p class="intro-text">
+                        Nie jestem psychologiem, psychiatrą ani coachem. Jestem pacjentem.
+                    </p>
+
+                    <p class="content-text">
+                        Z natury jestem analitykiem z twórczą duszą. Dziś zawodowo montuję internet światłowodowy, ale moja historia pracy to długa lista różnych ról: od budowlańca, przez marketing, grafikę i project management, po analitykę, IT, utrzymanie ruchu, produkcję, sprzedaż i inwestycje światłowodowe. Pracowałem także w kilku krajach UE.
+                    </p>
+
+                    <p class="content-text">
+                        Jak wielu ludzi z ADHD mam mnóstwo pomysłów. Nie wszystkie projekty kończą się sukcesem — ale większość zaczyna się od potrzeby rozwiązania jakiegoś problemu społecznego.
+                    </p>
+
+                    <p class="content-text">
+                        Prowadziłem stowarzyszenie edukacyjne i próbowałem realizować projekty o charakterze społecznym. Dziś dalej szukam sposobów łączenia ludzi i budowania przestrzeni do rozmowy.
+                    </p>
+
+                    <div class="callout">
+                        <div class="callout-title">Punkt zwrotny</div>
+                        <p>
+                            Od pewnego czasu intensywnie rozwijam się w obszarze psychoedukacji. To pozwoliło mi lepiej zrozumieć źródło moich trudności — i oddzielić fakty od mitów. Wiedzą i doświadczeniem, które zdobywam, chcę się tutaj dzielić.
+                        </p>
+                    </div>
+
+                    <p class="content-text">
+                        <strong>Ten blog to perspektywa pacjenta.</strong> Człowieka, który testuje rozwiązania na sobie, wyciąga wnioski i mówi wprost o tym, co działa — a co nie.
+                    </p>
+
+                    <p class="content-text">
+                        Ale to także perspektywa ojca.
+                    </p>
+
+                    <p class="content-text">
+                        Ojca, który obserwuje swojego 9-letniego syna i chce dać mu coś, czego sam długo nie miał — zrozumienie, narzędzia i świadomość.
+                    </p>
+
+                    <p class="content-text">
+                        Eksperymentuję. Testuję techniki. Tłumaczę. Pokazuję, jak radzić sobie z emocjami, impulsywnością, chaosem w głowie.
+                    </p>
+
+                    <p class="content-text">
+                        Nie po to, żeby był „idealny". Ale po to, żeby miał łatwiej niż ja.
+                    </p>
+
+                    <div class="quote-block">
+                        <p class="quote-text">
+                            Żebym kiedyś mógł powiedzieć, że wychowałem syna mądrzejszego, spokojniejszego i bardziej świadomego ode mnie.
+                        </p>
+                    </div>
+
+                    <div class="purpose-section">
+                        <h3 class="purpose-title">Po co ten blog?</h3>
+                        <div class="purpose-list">
+                            <div class="purpose-item">
+                                <div class="purpose-icon">📅</div>
+                                <p class="purpose-text">Pokazać codzienność osoby z ADHD bez wstydu i bez udawania</p>
+                            </div>
+                            <div class="purpose-item">
+                                <div class="purpose-icon">🧘</div>
+                                <p class="purpose-text">Pomóc zrozumieć, jak rozpoznać objawy i jak wygląda proces diagnozy</p>
+                            </div>
+                            <div class="purpose-item">
+                                <div class="purpose-icon">✓</div>
+                                <p class="purpose-text">Pokazać, co daje świadomość własnych mechanizmów</p>
+                            </div>
+                            <div class="purpose-item">
+                                <div class="purpose-icon">🧠</div>
+                                <p class="purpose-text">Budować społeczność — miejsce rozmowy, wsparcia i wymiany doświadczeń</p>
+                            </div>
+                            <div class="purpose-item">
+                                <div class="purpose-icon">💪</div>
+                                <p class="purpose-text">Mówić nie tylko o trudnościach, ale też o mocnych stronach ADHD</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bottom-statement">
+                        <p>
+                            Wierzę, że osoby z ADHD mogą wnosić ogromną wartość do społeczeństwa — pod warunkiem, że ktoś pomoże im zrozumieć siebie, a otoczenie nauczy się rozumieć ich.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Życie oświecone</div>
+                <h2 class="section-title">Najnowsze wpisy</h2>
+            </div>
+
+            <div class="categories-filter">
+                <button class="category-btn active" data-category="all">Wszystkie</button>
+                <button class="category-btn" data-category="diagnoza">Diagnoza</button>
+                <button class="category-btn" data-category="narzedzia">Narzędzia</button>
+                <button class="category-btn" data-category="rodzicielstwo">Rodzicielstwo</button>
+                <button class="category-btn" data-category="psychoedukacja">Psychoedukacja</button>
+                <button class="category-btn" data-category="ksiazki">Ciekawe książki</button>
+                <button class="category-btn" data-category="badania">Badania i eksperymenty</button>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card" data-category="diagnoza">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #6FA770 0%, #85b888 100%);">
+                        <div class="blog-card-icon">🔍</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span class="blog-category" style="background: #6FA770;">Droga ADHD-owca</span>
+                            <span class="blog-date">15 lutego 2025</span>
+                        </div>
+                        <h3 class="blog-card-title">Podejrzenia - Czy to ADHD?</h3>
+                        <p class="blog-card-excerpt">
+                            Coś jest nie tak, ale co? Chaos w głowie, niedokończone projekty, ciągłe zapominanie. Może to nie jest moja wina? Pierwsze podejrzenia i pytania, które prowadzą do zrozumienia.
+                        </p>
+                        <a href="podejrzenia.html" class="blog-card-link">
+                            Czytaj więcej →
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="diagnoza">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #7BA6C4 0%, #92b7d1 100%);">
+                        <div class="blog-card-icon">👀</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span class="blog-category" style="background: #7BA6C4;">Diagnoza</span>
+                            <span class="blog-date">12 lutego 2025</span>
+                        </div>
+                        <h3 class="blog-card-title">Po czym rozpoznasz ADHD-owca?</h3>
+                        <p class="blog-card-excerpt">
+                            Czy zastanawiałeś się kiedyś, dlaczego niektórzy ludzie wydają się być w ciągłym ruchu? Dowiedz się, jak rozpoznać osobę z ADHD i zrozumieć jej zachowania.
+                        </p>
+                        <a href="diagnoza.html" class="blog-card-link">
+                            Czytaj więcej →
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="psychoedukacja">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #E5A353 0%, #ebb770 100%);">
+                        <div class="blog-card-icon">💡</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span class="blog-category" style="background: #E5A353;">Psychoedukacja</span>
+                            <span class="blog-date">8 lutego 2025</span>
+                        </div>
+                        <h3 class="blog-card-title">Co daje świadomość swoich dysfunkcji?</h3>
+                        <p class="blog-card-excerpt">
+                            Diagnoza to dopiero początek drogi. Prawdziwa zmiana zaczyna się, gdy zrozumiesz swoje mechanizmy. Zobacz, jak psychoedukacja zmieniła moje życie.
+                        </p>
+                        <a href="oswiecenie.html" class="blog-card-link">
+                            Czytaj więcej →
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="narzedzia">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #B44F4A 0%, #c96460 100%);">
+                        <div class="blog-card-icon">🛠️</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span class="blog-category" style="background: #B44F4A;">Narzędzia</span>
+                            <span class="blog-date">5 lutego 2025</span>
+                        </div>
+                        <h3 class="blog-card-title">Narzędzia pomocne w życiu z ADHD</h3>
+                        <p class="blog-card-excerpt">
+                            Aplikacje, techniki, strategie - sprawdzone rozwiązania, które pomagają mi i mojemu synowi funkcjonować lepiej na co dzień. Lista praktycznych narzędzi przetestowanych w praktyce.
+                        </p>
+                        <a href="narzedzia.html" class="blog-card-link">
+                            Czytaj więcej →
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2025 ADHD w Praktyce</p>
+                <div class="footer-links">
+                    <a href="#privacy">Prywatność</a>
+                    <a href="#contact">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

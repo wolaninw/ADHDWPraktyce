@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cechy dysfunkcyjne ADHD - ADHD w Praktyce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll offset for fixed header */
+        #wyniki, #uwaga, #czas, #impulsywnosc, #emocje, #motywacja, #relacje, #samoocena {
+            scroll-margin-top: 100px;
+        }
+
+        :root {
+            --primary: #6B9B9E;
+            --primary-light: #8BB5B8;
+            --primary-dark: #5A8285;
+            --accent-red: #B44F4A;
+            --accent-orange: #E5A353;
+            --accent-green: #6FA770;
+            --accent-blue: #7BA6C4;
+            --text-primary: #2d3e3f;
+            --text-secondary: #5a6f71;
+            --text-tertiary: #7d9194;
+            --bg-primary: #fdfcf9;
+            --bg-secondary: #f5f3ed;
+            --bg-tertiary: #ebe8df;
+            --border: #ddd9cd;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(253, 252, 249, 0.95);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-tertiary);
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            border-bottom: 3px solid var(--accent-red);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        .content-section {
+            padding: 60px 0;
+        }
+
+        .intro-text {
+            max-width: 720px;
+            margin: 0 auto 60px;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffedd5 100%);
+            border-left: 4px solid var(--accent-orange);
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .intro-box h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .intro-box p {
+            font-size: 1.0625rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .chart-section {
+            margin: 60px 0;
+        }
+
+        .toc-section {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 48px 0 60px;
+        }
+
+        .toc-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .toc-item:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .toc-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .toc-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .section-heading {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            color: var(--accent-orange);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .chart-container {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .category {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 32px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+        }
+
+        .category-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .traits-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .trait-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .trait-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .trait-text {
+            font-size: 1.0625rem;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .trait-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .info-btn {
+            background: #E5A353;
+            color: white;
+        }
+
+        .info-btn:hover {
+            background: #d89440;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(229, 163, 83, 0.3);
+        }
+
+        .help-btn {
+            background: #6FA770;
+            color: white;
+        }
+
+        .help-btn:hover {
+            background: #5c8a60;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(111, 167, 112, 0.3);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        footer {
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-tertiary);
+            font-size: 0.9375rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .category {
+                padding: 24px;
+            }
+            nav ul {
+                gap: 20px;
+            }
+            .trait-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .trait-actions {
+                width: 100%;
+            }
+            .action-btn {
+                flex: 1;
+            }
+            .chart-container {
+                padding: 20px;
+            }
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+            .toc-section {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="o-mnie.html" class="logo">
+                    <img src="logo.png" alt="ADHD w Praktyce">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="o-mnie.html">Start</a></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Droga ADHD-owca
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="podejrzenia.html">Podejrzenia</a>
+                                <a href="diagnoza.html">Diagnoza</a>
+                                <a href="oswiecenie.html">Oświecenie</a>
+                                <a href="o-mnie.html#blog">Życie oświecone</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Cechy ADHD
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="cechy-dysfunkcyjne.html">Cechy dysfunkcyjne</a>
+                                <a href="cechy-funkcjonalne.html">Cechy funkcjonalne</a>
+                            </div>
+                        </li>
+                        <li><a href="o-mnie.html#about">O mnie</a></li>
+                        <li><a href="o-mnie.html#blog">Życie oświecone</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Cechy dysfunkcyjne ADHD</h1>
+            <p class="subtitle">
+                ADHD to nie tylko jedna cecha. To zestaw wyzwań, które wpływają na różne obszary życia. Poznaj je, zrozum - i znajdź swoje rozwiązania.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="intro-box">
+                <h3>🚧 W trakcie realizacji</h3>
+                <p>Aktualnie przygotowujemy badanie, które pomoże zidentyfikować, które cechy ADHD są najbardziej problematyczne dla społeczności. Wyniki będą wkrótce dostępne na tej stronie.</p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="toc-section">
+                <h2 class="toc-title">Spis treści</h2>
+                <div class="toc-grid">
+                    <a href="#wyniki" class="toc-item">
+                        <span class="toc-icon">📊</span>
+                        <span class="toc-text">Wstępne wyniki badania</span>
+                    </a>
+                    <a href="#uwaga" class="toc-item">
+                        <span class="toc-icon">🧠</span>
+                        <span class="toc-text">Uwaga i koncentracja</span>
+                    </a>
+                    <a href="#czas" class="toc-item">
+                        <span class="toc-icon">⏳</span>
+                        <span class="toc-text">Czas i organizacja</span>
+                    </a>
+                    <a href="#impulsywnosc" class="toc-item">
+                        <span class="toc-icon">🔥</span>
+                        <span class="toc-text">Impulsywność</span>
+                    </a>
+                    <a href="#emocje" class="toc-item">
+                        <span class="toc-icon">❤️</span>
+                        <span class="toc-text">Emocje</span>
+                    </a>
+                    <a href="#motywacja" class="toc-item">
+                        <span class="toc-icon">🧩</span>
+                        <span class="toc-text">Motywacja i energia</span>
+                    </a>
+                    <a href="#relacje" class="toc-item">
+                        <span class="toc-icon">👥</span>
+                        <span class="toc-text">Relacje</span>
+                    </a>
+                    <a href="#samoocena" class="toc-item">
+                        <span class="toc-icon">💬</span>
+                        <span class="toc-text">Samoocena</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Test Data Chart -->
+            <div id="wyniki" class="chart-section">
+                <h2 class="section-heading">Wstępne wyniki badania</h2>
+                <p class="chart-subtitle">⚠️ Dane testowe - nie odzwierciedlają rzeczywistych wyników</p>
+                
+                <div class="chart-container">
+                    <canvas id="traitsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Uwaga i koncentracja -->
+            <div id="uwaga" class="category">
+                <div class="category-header">
+                    <span class="category-icon">🧠</span>
+                    <h2 class="category-title">Uwaga i koncentracja</h2>
+                </div>
+                <div class="traits-list">
+                    <div class="trait-item">
+                        <span class="trait-text">Trudność w utrzymaniu uwagi</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('uwaga-1')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('uwaga-1')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Szybkie rozpraszanie się</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('uwaga-2')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('uwaga-2')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Problemy z kończeniem rozpoczętych zadań</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('uwaga-3')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('uwaga-3')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Skakanie między zadaniami</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('uwaga-4')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('uwaga-4')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">„Odpływanie myślami" podczas rozmowy</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('uwaga-5')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('uwaga-5')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Czas i organizacja -->
+            <div id="czas" class="category">
+                <div class="category-header">
+                    <span class="category-icon">⏳</span>
+                    <h2 class="category-title">Czas i organizacja</h2>
+                </div>
+                <div class="traits-list">
+                    <div class="trait-item">
+                        <span class="trait-text">Prokrastynacja (odkładanie na później)</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('czas-1')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('czas-1')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Działanie dopiero pod presją czasu</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('czas-2')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('czas-2')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">„Ślepota czasowa" (nie czuję upływu czasu)</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('czas-3')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('czas-3')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Spóźnianie się</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('czas-4')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('czas-4')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Chaos organizacyjny</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('czas-5')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('czas-5')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Trudność w planowaniu długoterminowym</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('czas-6')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('czas-6')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impulsywność -->
+            <div id="impulsywnosc" class="category">
+                <div class="category-header">
+                    <span class="category-icon">🔥</span>
+                    <h2 class="category-title">Impulsywność</h2>
+                </div>
+                <div class="traits-list">
+                    <div class="trait-item">
+                        <span class="trait-text">Mówienie bez zastanowienia</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('impuls-1')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('impuls-1')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Przerywanie innym</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('impuls-2')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('impuls-2')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Impulsywne decyzje finansowe</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('impuls-3')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('impuls-3')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Nagłe zmiany planów</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('impuls-4')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('impuls-4')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Trudność w hamowaniu reakcji</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('impuls-5')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('impuls-5')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emocje -->
+            <div id="emocje" class="category">
+                <div class="category-header">
+                    <span class="category-icon">❤️</span>
+                    <h2 class="category-title">Emocje</h2>
+                </div>
+                <div class="traits-list">
+                    <div class="trait-item">
+                        <span class="trait-text">Nadwrażliwość emocjonalna</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('emocje-1')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('emocje-1')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Silne reakcje na krytykę</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('emocje-2')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('emocje-2')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Wybuchy złości</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('emocje-3')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('emocje-3')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Gwałtowne zmiany nastroju</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('emocje-4')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('emocje-4')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Szybkie zniechęcanie się</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('emocje-5')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('emocje-5')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Poczucie winy po wybuchu</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('emocje-6')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('emocje-6')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Motywacja i energia -->
+            <div id="motywacja" class="category">
+                <div class="category-header">
+                    <span class="category-icon">🧩</span>
+                    <h2 class="category-title">Motywacja i energia</h2>
+                </div>
+                <div class="traits-list">
+                    <div class="trait-item">
+                        <span class="trait-text">Trudność w zaczęciu zadania</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('motyw-1')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('motyw-1')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Brak motywacji do rzeczy „nudnych"</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('motyw-2')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('motyw-2')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Hiperfokus (oderwanie się od świata)</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('motyw-3')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('motyw-3')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Szybkie wypalanie się projektem</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('motyw-4')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('motyw-4')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Zaczynanie wielu rzeczy naraz</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('motyw-5')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('motyw-5')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Paraliż analityczny</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('motyw-6')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('motyw-6')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Relacje -->
+            <div id="relacje" class="category">
+                <div class="category-header">
+                    <span class="category-icon">👥</span>
+                    <h2 class="category-title">Relacje</h2>
+                </div>
+                <div class="traits-list">
+                    <div class="trait-item">
+                        <span class="trait-text">Zapominanie o ważnych sprawach</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('relacje-1')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('relacje-1')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Trudność w słuchaniu do końca</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('relacje-2')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('relacje-2')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Nadmierna szczerość</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('relacje-3')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('relacje-3')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Konflikty wynikające z emocjonalności</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('relacje-4')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('relacje-4')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Samoocena -->
+            <div id="samoocena" class="category">
+                <div class="category-header">
+                    <span class="category-icon">💬</span>
+                    <h2 class="category-title">Samoocena</h2>
+                </div>
+                <div class="traits-list">
+                    <div class="trait-item">
+                        <span class="trait-text">Poczucie „niewykorzystywania potencjału"</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('samoocena-1')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('samoocena-1')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Niska samoocena</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('samoocena-2')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('samoocena-2')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Ciągłe porównywanie się</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('samoocena-3')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('samoocena-3')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-text">Syndrom oszusta</span>
+                        <div class="trait-actions">
+                            <button class="action-btn info-btn" onclick="showInfo('samoocena-4')">Co to oznacza?</button>
+                            <button class="action-btn help-btn" onclick="showHelp('samoocena-4')">Co może pomóc?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2025 ADHD w Praktyce</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Test data chart
+        const ctx = document.getElementById('traitsChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Prokrastynacja',
+                    'Trudność w zaczęciu',
+                    'Szybkie rozpraszanie',
+                    'Chaos organizacyjny',
+                    'Nadwrażliwość emocjonalna',
+                    'Poczucie niewykorzystywania potencjału',
+                    'Wybuchy złości',
+                    'Trudność w utrzymaniu uwagi'
+                ],
+                datasets: [{
+                    label: 'Liczba osób zgłaszających problem',
+                    data: [85, 78, 72, 68, 65, 62, 58, 54],
+                    backgroundColor: [
+                        '#6B9B9E',
+                        '#E5A353',
+                        '#6FA770',
+                        '#7BA6C4',
+                        '#B44F4A',
+                        '#6B9B9E',
+                        '#E5A353',
+                        '#6FA770'
+                    ],
+                    borderRadius: 8,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'TOP 8 najbardziej problematycznych cech (dane testowe)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        padding: 20
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Liczba osób (na 100 badanych)'
+                        },
+                        ticks: {
+                            stepSize: 10
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 45,
+                            minRotation: 45,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Button handlers
+        function showInfo(traitId) {
+            alert('🚧 W przygotowaniu\n\nWkrótce tutaj znajdziesz szczegółowy opis tej cechy i jak wpływa na codzienne życie.');
+        }
+
+        function showHelp(traitId) {
+            alert('🚧 W przygotowaniu\n\nWkrótce tutaj znajdziesz sprawdzone rozwiązania i strategie radzenia sobie z tym problemem.');
+        }
+    </script>
+</body>
+</html>

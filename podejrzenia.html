@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podejrzenia - Czy to ADHD? - ADHD w Praktyce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B9B9E;
+            --primary-light: #8BB5B8;
+            --primary-dark: #5A8285;
+            --accent-red: #B44F4A;
+            --accent-orange: #E5A353;
+            --accent-green: #6FA770;
+            --accent-blue: #7BA6C4;
+            --text-primary: #2d3e3f;
+            --text-secondary: #5a6f71;
+            --text-tertiary: #7d9194;
+            --bg-primary: #fdfcf9;
+            --bg-secondary: #f5f3ed;
+            --bg-tertiary: #ebe8df;
+            --border: #ddd9cd;
+            --border-light: #ebe8df;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(253, 252, 249, 0.95);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Dropdown Menu */
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-tertiary);
+            color: var(--primary);
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 60px 0 40px;
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            border-bottom: 3px solid var(--accent-green);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .article-category {
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            background: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .article-date {
+            color: var(--text-tertiary);
+            font-size: 0.9375rem;
+        }
+
+        .article-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+        }
+
+        .article-intro {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 720px;
+        }
+
+        /* Article Content */
+        .article-content {
+            padding: 60px 0;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 48px 0 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 36px 0 16px;
+        }
+
+        .article-content p {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 24px 0;
+            padding-left: 28px;
+        }
+
+        .article-content li {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .article-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef8f3 0%, #fdf3eb 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            margin-bottom: 40px;
+            transition: gap 0.2s;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-tertiary);
+            font-size: 0.9375rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-intro {
+                font-size: 1.125rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="o-mnie.html" class="logo">
+                    <img src="logo.png" alt="ADHD w Praktyce">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="o-mnie.html">Start</a></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Droga ADHD-owca
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="podejrzenia.html">Podejrzenia</a>
+                                <a href="diagnoza.html">Diagnoza</a>
+                                <a href="oswiecenie.html">Oświecenie</a>
+                                <a href="o-mnie.html#blog">Blog</a>
+                            </div>
+                        </li>
+                        <li><a href="o-mnie.html#about">O mnie</a></li>
+                        <li><a href="o-mnie.html#blog">Blog</a></li>
+                        <li><a href="o-mnie.html#contact">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="article-header">
+        <div class="container">
+            <div class="article-meta">
+                <span class="article-category">Droga ADHD-owca</span>
+                <span class="article-date">15 lutego 2025</span>
+            </div>
+            <h1 class="article-title">Podejrzenia - Czy to ADHD?</h1>
+            <p class="article-intro">
+                Coś jest nie tak, ale co? Chaos w głowie, niedokończone projekty, ciągłe zapominanie. Może to nie jest moja wina? To moment, w którym zaczynasz się zastanawiać, czy twoje trudności mają głębsze źródło.
+            </p>
+        </div>
+    </section>
+
+    <article class="article-content">
+        <div class="container">
+            <a href="o-mnie.html#blog" class="back-link">← Powrót do bloga</a>
+
+            <p>
+                Kiedy dostałem diagnozę ADHD w wieku 40 lat, wiele rzeczy nagle zaczęło mieć sens. Te wszystkie "dziwactwa", które towarzyszyły mi przez całe życie, wreszcie znalazły swoje wyjaśnienie. Nie byłem "leniwy", "rozkojarzony" czy "niedojrzały" - po prostu mój mózg działał inaczej.
+            </p>
+
+            <p>
+                Jeśli podejrzewasz u siebie ADHD, najważniejsze jest zrozumienie, czym właściwie jest to zaburzenie. To nie jest "wymówka dla leniwych" ani "modna etykietka". To rzeczywiste zaburzenie neurologiczne, które wpływa na całe życie.
+            </p>
+
+            <h2>Trzy główne obszary objawów - triada ADHD</h2>
+
+            <p>
+                ADHD objawia się w trzech kluczowych obszarach: <strong>nieuwaga, nadpobudliwość i impulsywność</strong>. Ważne jest, że nie każda osoba z ADHD ma wszystkie objawy w tym samym nasileniu - to bardzo indywidualne.
+            </p>
+
+            <h3>1. Nieuwaga - to nie lenistwo</h3>
+
+            <p>Objawy nieuwagi, które sam doświadczam:</p>
+
+            <ul>
+                <li><strong>Trudności z utrzymaniem koncentracji</strong> - szczególnie przy monotonnych zadaniach. Potrafię skupić się na fascynującym projekcie przez 8 godzin, ale wypełnienie formularza zajmuje mi dni.</li>
+                <li><strong>Zapominanie</strong> - nie chodzi o ważne rzeczy jak rocznice (choć i to się zdarza). Chodzi o to, że wstaję po coś do kuchni i zapominam po co. Albo zaczynam zdanie i... przepraszam, o czym mówiłem?</li>
+                <li><strong>Gubienie rzeczy</strong> - klucze, telefon, portfel. Standardowy zestaw. W tym tygodniu szukałem okularów, które miałem na nosie.</li>
+                <li><strong>Trudności z organizacją</strong> - mam kilkanaście systemów organizacji czasu. Żaden nie działa dłużej niż tydzień.</li>
+                <li><strong>Łatwe rozpraszanie</strong> - każdy dźwięk, ruch, myśl potrafi mnie wyrwać z tego, co robię.</li>
+                <li><strong>Unikanie zadań wymagających ciągłego wysiłku umysłowego</strong> - nie z lenistwa, ale z prawdziwego, fizycznego dyskomfortu.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p>
+                    <strong>Ważne:</strong> Nieuwaga w ADHD to nie jest po prostu "rozkojarzenie". To neurologiczny problem z funkcjami wykonawczymi mózgu. Nie można tego "przezwyciężyć siłą woli".
+                </p>
+            </div>
+
+            <h3>2. Nadpobudliwość - nie tylko fizyczna</h3>
+
+            <p>
+                Większość ludzi myśli o ADHD jak o dziecku biegającym po klasie. U dorosłych nadpobudliwość wygląda inaczej:
+            </p>
+
+            <ul>
+                <li><strong>Wewnętrzny niepokój</strong> - uczucie, że zawsze trzeba coś robić. Siedzenie w miejscu to tortury.</li>
+                <li><strong>Gadatliwość</strong> - przerywanie innym, zdominowanie rozmowy (przepraszam wszystkich moich znajomych).</li>
+                <li><strong>Wieczny ruch</strong> - stukanie nogą, klikanie długopisem, skubanie skórek. Muszę coś robić rękami.</li>
+                <li><strong>Nadpobudliwość umysłowa</strong> - mózg, który nigdy się nie wyłącza. Milion myśli naraz, szczególnie w nocy.</li>
+                <li><strong>Trudności z "wyłączeniem się"</strong> - nawet podczas odpoczynku czuję wewnętrzne napięcie.</li>
+                <li><strong>Nadmierna energia emocjonalna</strong> - wszystko przeżywam intensywniej niż inni.</li>
+            </ul>
+
+            <h3>3. Impulsywność - działanie bez myślenia</h3>
+
+            <p>To jeden z najtrudniejszych aspektów ADHD:</p>
+
+            <ul>
+                <li><strong>Decyzje bez zastanowienia</strong> - kupiłem rower. Potem drugi. Teraz mam cztery. Nie jeżdżę regularnie.</li>
+                <li><strong>Przerywanie innym</strong> - wiem, że to niegrzeczne. Ale myśl w mojej głowie jest tak głośna, że MUSZĘ ją powiedzieć TERAZ, zanim zapomnę.</li>
+                <li><strong>Zmiana planów</strong> - "a może jednak zrobimy to inaczej?" - mówię w środku projektu, który trwa 3 miesiące.</li>
+                <li><strong>Problemy z odroczoną gratyfikacją</strong> - trudno mi czekać na rezultaty. Chcę wszystkiego tu i teraz.</li>
+                <li><strong>Trudności z powstrzymaniem reakcji</strong> - mówię zanim pomyślę, działam zanim rozważę konsekwencje.</li>
+                <li><strong>Ryzykowne zachowania</strong> - nie zawsze z świadomością ryzyka.</li>
+            </ul>
+
+            <h2>Inne często pomijane objawy</h2>
+
+            <p>
+                Oprócz klasycznej triady, są inne cechy, o których rzadziej się mówi, a które znacząco wpływają na życie:
+            </p>
+
+            <ul>
+                <li><strong>Hiperfokus</strong> - paradoksalnie, czasem potrafię skupić się na czymś tak bardzo, że zapominam jeść czy spać. To nie jest "normalna koncentracja" - to stan, w którym świat przestaje istnieć.</li>
+                <li><strong>Dysregulacja emocjonalna</strong> - emocje są intensywne i przychodzą nagle. Zero do stu w sekundę. Trudności z powrotem do równowagi.</li>
+                <li><strong>Trudności ze snem</strong> - mózg nie chce się wyłączyć. O 23:00 nagle mam ochotę przeorganizować całe mieszkanie.</li>
+                <li><strong>Wrażliwość sensoryczna</strong> - dźwięki, światło, tekstury - wszystko jest intensywniejsze. Metkę w koszulce czuję jak drapiący drut.</li>
+                <li><strong>Prokrastynacja</strong> - ale nie z lenistwa. Z paraliżującego lęku przed rozpoczęciem. Im ważniejsze zadanie, tym większy blok.</li>
+                <li><strong>Trudności z poczuciem czasu</strong> - "5 minut" może oznaczać godzinę. Albo 30 sekund. Nie mam pojęcia ile czasu minęło.</li>
+                <li><strong>Niska frustracja</strong> - szybko się poddaję, gdy coś nie idzie łatwo.</li>
+            </ul>
+
+            <h2>Co to oznacza w praktyce?</h2>
+
+            <p>
+                U mnie ADHD objawia się tak: zaczynam pisać ten artykuł, po 10 minutach sprawdzam pocztę, potem przypominam sobie o czymś co miałem zrobić tydzień temu, zaczynam to robić, dostaję SMS-a, odpowiadam, widzę że syn zostawił brudny talerz, idę go umyć, w kuchni przypominam sobie że miałem napisać ten artykuł... i tak w kółko.
+            </p>
+
+            <p>
+                To jak życie w pokoju pełnym telewizorów, gdzie każdy pokazuje inny program, a wszystkie są nastawione na maksymalną głośność.
+            </p>
+
+            <div class="highlight-box">
+                <p>
+                    <strong>Pamiętaj:</strong> Jeśli rozpoznajesz u siebie wiele z tych objawów i wpływają one negatywnie na twoje życie - warto skonsultować się ze specjalistą. Diagnoza zmieniła moje życie, może zmienić też twoje.
+                </p>
+            </div>
+
+            <h2>ADHD u dzieci vs dorosłych</h2>
+
+            <p>
+                Obserwując mojego 9-letniego syna widzę, że u dzieci objawy są często bardziej widoczne - fizyczna nadpobudliwość, głośne emocje, chaos. U dorosłych ADHD często "idzie do środka" - nadpobudliwość staje się wewnętrznym niepokojem, chaos przenosi się do myśli.
+            </p>
+
+            <p>
+                Dlatego tak wiele osób, jak ja, dostaje diagnozę dopiero w dorosłym życiu. Nauczyliśmy się maskować objawy, rozwinęliśmy strategie kompensacyjne. Ale koszt jest ogromny - chroniczne zmęczenie, wypalenie, poczucie, że coś jest ze mną nie tak.
+            </p>
+
+            <h2>Kiedy to jest "tylko" rozproszenie, a kiedy ADHD?</h2>
+
+            <p>
+                Każdy czasem zapomina, gdzie położył klucze. Każdy czasem ma problem ze skupieniem. Różnica polega na tym, że:
+            </p>
+
+            <ul>
+                <li><strong>Częstotliwość</strong> - u osoby z ADHD te problemy występują codziennie, przez całe życie</li>
+                <li><strong>Nasilenie</strong> - nie jest to "trochę rozkojarzenia", ale poważne trudności w funkcjonowaniu</li>
+                <li><strong>Konsekwencje</strong> - wpływa to negatywnie na pracę, związki, samoocenę, zdrowie</li>
+                <li><strong>Występowanie w różnych sytuacjach</strong> - w domu, pracy, szkole, wszędzie</li>
+            </ul>
+
+            <h2>Mity o ADHD, które warto obalić</h2>
+
+            <p>Jeśli podejrzewasz u siebie ADHD, pewnie słyszałeś:</p>
+
+            <ul>
+                <li>"ADHD nie istnieje, to wymysł koncernów farmaceutycznych" - FAŁSZ. ADHD jest udokumentowanym zaburzeniem neurologicznym.</li>
+                <li>"To choroba dzieci, dorośli 'wyrastają' z ADHD" - FAŁSZ. ADHD trwa całe życie, choć objawy mogą się zmieniać.</li>
+                <li>"ADHD to po prostu lenistwo i brak samodyscypliny" - FAŁSZ. To zaburzenie neurologiczne, nie wybór.</li>
+                <li>"Osoby z ADHD nie mogą się na niczym skupić" - FAŁSZ. Hiperfokus to także objaw ADHD.</li>
+                <li>"ADHD mają tylko chłopcy" - FAŁSZ. Dziewczynki i kobiety też mają ADHD, tylko rzadziej są diagnozowane.</li>
+            </ul>
+
+            <h2>Co dalej z podejrzeniami?</h2>
+
+            <p>
+                Rozpoznanie objawów to pierwszy krok. Następny to zrozumienie, że ADHD to nie wyrok - to po prostu inna konfiguracja mózgu. Z odpowiednim wsparciem, narzędziami i zrozumieniem można nie tylko funkcjonować, ale i wykorzystać unikalne mocne strony ADHD.
+            </p>
+
+            <p>
+                Bo tak, ADHD ma też swoje dobre strony - kreatywność, zdolność do myślenia nieszablonowego, pasja i energia (kiedy się już coś znajdzie), empatia, poczucie humoru, umiejętność dostrzegania nieoczywistych rozwiązań.
+            </p>
+
+            <p>
+                Jeśli rozpoznałeś u siebie większość opisanych objawów - następnym krokiem jest wizyta u specjalisty. O tym, jak wygląda proces diagnozy, przeczytasz w kolejnym artykule.
+            </p>
+
+            <a href="o-mnie.html#blog" class="back-link">← Powrót do bloga</a>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2025 ADHD w Praktyce</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
